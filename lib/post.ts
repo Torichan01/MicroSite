@@ -7,10 +7,10 @@ import html from  "remark-html"
 const postsDirectory = path.join(process.cwd(),"posts")
 
 //mdファイルのデータを取り出す
-export function getPostsData(){
+export const getPostsData = () => {
     const fileNames = fs.readdirSync(postsDirectory);
     const allPostsData = fileNames.map((fileName) => {
-        const id = fileName.replace(/\.md$,""/);
+        const id = fileName.replace('\.md$','');
 
 //マークダウンファイルを文字列として読み取る
 const fullPath = path.join(postsDirectory,fileName)
@@ -26,18 +26,18 @@ return {
     return allPostsData
 }
 
-export function getAllPostIds() {
+export const getAllPostIds = () => {
     const fileNames = fs.readdirSync(postsDirectory);
     return fileNames.map((fileName) => {
         return {
             params: {
-                id: fileName.replace(/\.md$,""/)
+                id: fileName.replace('\.md$','')
             }
         }
     })
 }
 
-export async function getPostDataOne(id){
+export const getPostDataOne = async (id) => {
     const fullPath = path.join(postsDirectory,`${id}`);
     const fileContents = fs.readFileSync(fullPath, "utf8");
 

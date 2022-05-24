@@ -1,12 +1,12 @@
 import styles from '../styles/Home.module.css'
 import Link from 'next/link'
-import Layout, { siteTitle } from '../components/Layout'
+import { Layout,siteTitle } from '../components/Layout'
 import utilStyles from "../styles/utils.module.css"
 import { getPostsData } from '../lib/post'
 import Head from 'next/head'
 
 //SSGの場合
-export async function getStaticProps(){
+export const getStaticProps = async () =>{
   const allPostsData = getPostsData();
   return {
     props:{
@@ -15,9 +15,9 @@ export async function getStaticProps(){
   }
 }
 
-export default function Home({allPostsData}) {
+export const Home = ({allPostsData}) => {
   return (
-<Layout home>
+<Layout>
   <Head>
    <title>{siteTitle}</title>
   </Head>
@@ -43,3 +43,5 @@ export default function Home({allPostsData}) {
 </Layout>
   )
 }
+
+export default Home;
